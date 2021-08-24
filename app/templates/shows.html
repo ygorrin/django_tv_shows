@@ -1,17 +1,49 @@
 {% extends "base.html" %}
 
-{% block titulo %}  Shows {% endblock %} 
+{% block titulo %} Shows {% endblock %}
 
- {% block estilos %}
- <style>
-    h1{
-      color: red;  
-    }
- </style>
- {% endblock %}
+{% block estilos %}
+
+{% endblock %}
 
 {% block contenido %}
 
-    <h1 class="tooltip-tipped" ayuda="ESTO ES UN INDED">INDEX</h1>
+<div class="row">
+  <div class="col-sm-12 col-md-10 registros">
+    <h3>Shows registrados</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Titulo</th>
+          <th scope="col">Network</th>
+          <th scope="col">Fecha estreno</th>
+          <th scope="col">Fecha actualización</th>
+          <th scope="col">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for show in shows reversed%}
+        <tr>
+          <th scope="row">{{show.id}}</th>
+          <td>{{show.title}}</td>
+          <td>{{show.network}}</td>
+          <td>{{show.release_date | date:"d M Y"}}</td>
+          <td>{{show.updated_at | date:"d M Y"}}</td>
+          <td>
+            <a class="badge bg-secondary" href="/shows/{{show.id}}">Mostrar</a>
+            <a class="badge bg-secondary" href="/shows/{{show.id}}/edit">Editar</a>
+            <a class="badge bg-danger" href="/shows/{{show.id}}/delete">Eliminar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+<a href="/shows/new">Crear nuevo show</a>
+
+
+
 
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %}  Shows {% endblock %} 
+
+{% block estilos %}
+
+{% endblock %}
+
+{% block contenido %}
+
+  <div class="row">
+    <div class="offset-2 col-8">
+      <form action="/shows/edit" method="post">
+        {% csrf_token %} 
+        <h1>Editar un Show existente</h1>
+        <h2>TV Show #{{show.id}}</h2> <br>
+
+        <div class="mb-3">
+          <label for="title" class="form-label">Título</label>
+          <input class="form-control" type="text" name="title" placeholder="{{show.title}}"  value="{{show.title}}">
+        </div>
+
+        <div class="row">
+          <div class="col-8">
+            <div class="mb-3">
+              <label for="network" class="form-label">Network</label>
+              <input class="form-control" type="text" name = "network" placeholder="{{show.network}}"  value="{{show.network}}" >
+            </div>
+          </div>
+          <div class="col-4">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="desc" class="form-label">Descripción</label>
+          <input class="form-control" type="form-control" style="height: 100px" name = "desc"  placeholder="{{show.desc}}" value="{{show.desc}}"></input>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar y actualizar datos</button>
+        <input type="hidden" name="id_show" value="{{show.id}}">
+    </form>
+    </div>
+  </div>
+
+
+{% endblock %}
